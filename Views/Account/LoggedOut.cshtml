@@ -1,0 +1,46 @@
+﻿@model LoggedOutViewModel
+
+@{
+    // set this so the layout rendering sees an anonymous user
+    ViewData["signed-out"] = true;
+}
+
+<div class="loggedout-container full-height sm-p-t-30 text-center">
+    <div class="d-flex justify-content-center flex-column full-height">
+        <h3>Logout</h3>
+        <p>
+            You are now logged out.
+        </p>
+
+        @if(Model.PostLogoutRedirectUri != null)
+        {
+            <div>
+                Click <a class="PostLogoutRedirectUri" href="@Model.PostLogoutRedirectUri">here</a> to return to the
+                <span>@Model.ClientName</span> application.
+            </div>
+        }
+
+        @if(Model.SignOutIframeUrl != null)
+        {
+            <iframe width="0" height="0" class="signout" src="@Model.SignOutIframeUrl"></iframe>
+        }
+    </div>
+</div>
+
+<div class="full-width">
+    <div class="register-container m-b-10 clearfix ">
+        <div class="m-b-30 sm-m-t-20 sm-p-r-15 sm-p-b-20 clearfix d-flex-md-up text-center">
+            <p class="hinted-text small inline sm-p-t-10">
+                ©2019-2020 All Rights Reserved. CBMaster®.
+            </p>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    @if(Model.AutomaticRedirectAfterSignOut)
+    {
+        <script src="~/js/signout-redirect.js"></script>
+    }
+}

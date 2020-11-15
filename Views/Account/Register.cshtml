@@ -1,0 +1,100 @@
+﻿@model RegisterInputModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="register-container full-height sm-p-t-30">
+    <div class="d-flex justify-content-center flex-column full-height ">
+        <h1 class="semi-bold text-uppercase">
+            Tickets Cinema
+        </h1>
+        <h3>Registration</h3>
+        <p>
+            Create your account. If you have a facebook account, log into it for this process. Sign in with <a href="#" class="text-info">Facebook</a> or <a href="#" class="text-info">Google</a>.
+        </p>
+        <form id="form-register" class="p-t-15" role="form" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" asp-for="FirstName" placeholder="Your first name" class="form-control" required="" aria-required="true">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Surname</label>
+                        <input type="text" asp-for="LastName" placeholder="Your last name" class="form-control" required="" aria-required="true">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" asp-for="Email" placeholder="We will send loging details to you" class="form-control" required="" aria-required="true">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Phone number</label>
+                        <input type="text" asp-for="Phone" placeholder="" class="form-control" required="" aria-required="true">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" asp-for="Password" placeholder="Minimum of 4 Charactors" class="form-control" required="" aria-required="true">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Confirm password</label>
+                        <input type="password" asp-for="ConfirmPassword" placeholder="Repeat your password" class="form-control" required="" aria-required="true">
+                    </div>
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-lg-6">
+                    <p><small>I agree <a href="#" class="text-info">Terms</a> and <a href="#" class="text-info">Privacy</a>.</small></p>
+                </div>
+                <div class="col-lg-6 text-right">
+
+                </div>
+            </div>
+            <button aria-label="" class="btn btn-primary btn-cons m-t-10" type="submit">Create account</button>
+            <div class="m-b-5 m-t-30">
+                <a asp-action="Login" class="normal">Already have an account? Sign in.</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="full-width">
+    <div class="register-container m-b-10 clearfix ">
+        <div class="m-b-30 sm-m-t-20 sm-p-r-15 sm-p-b-20 clearfix d-flex-md-up text-center">
+            <p class="hinted-text small inline sm-p-t-10">
+                ©2019-2020 All Rights Reserved. CBMaster®.
+            </p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script>
+        $("#Phone").keypress(function (e) {
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                return false;
+            }
+        });
+    </script>
+}
